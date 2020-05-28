@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Notebook</string>
+    <string name="enter_file_name">Enter File Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="type_your_notes_here">Type your notes here</string>
+</resources>
