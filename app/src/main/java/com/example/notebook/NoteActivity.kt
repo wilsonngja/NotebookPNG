@@ -1,5 +1,6 @@
 package com.example.notebook
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
@@ -31,7 +32,10 @@ class NoteActivity : AppCompatActivity() {
         val notetext = findViewById<EditText>(R.id.noteET)
         notetext.setText(note)
 
-
+        cameraFB.setOnClickListener {
+            val intent = Intent(cameraFB.context, CameraActivity::class.java)
+            cameraFB.context.startActivity(intent)
+        }
 
 
     }

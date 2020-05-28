@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.notebook">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -19,8 +26,21 @@
 
         <activity android:name=".NoteActivity"
             android:launchMode="singleTop"
-            android:theme="@style/NotebookTheme"
-            >
+            android:theme="@style/NotebookTheme">
+
+        </activity>
+
+        <activity android:name=".CameraActivity"
+            android:label="GoogleVisionAPI"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            tools:ignore="WrongManifestParent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="com.google.android.gms.vision.DEPENDENCIES"
+                android:value="ocr" />
         </activity>
     </application>
 
