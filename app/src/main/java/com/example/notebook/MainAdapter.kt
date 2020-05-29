@@ -23,7 +23,9 @@ class MainAdapter(private val dataset: MutableList<String>) :
 
         init{
             v.setOnClickListener{
-                val intent = Intent(v.context, NoteActivity::class.java)
+                //
+                val intent = Intent(v.context, ViewActivity::class.java)
+                //val intent = Intent(v.context, NoteActivity::class.java)
                 intent.putExtra("key", label.text)
                 v.context.startActivity(intent)
             }

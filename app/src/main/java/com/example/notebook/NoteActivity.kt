@@ -10,7 +10,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import io.noties.markwon.AbstractMarkwonPlugin
+import io.noties.markwon.Markwon
+import io.noties.markwon.MarkwonVisitor
+import io.noties.markwon.editor.MarkwonEditor
+import io.noties.markwon.editor.MarkwonEditorTextWatcher
 import kotlinx.android.synthetic.main.note_page.*
+import org.commonmark.node.SoftLineBreak
+import java.util.concurrent.Executors
+
 
 class NoteActivity : AppCompatActivity() {
 
@@ -18,20 +26,54 @@ class NoteActivity : AppCompatActivity() {
     var db = DatabaseHandler(context)
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val markwon = Markwon.builder(context)
+            .usePlugin(object : AbstractMarkwonPlugin() {
+                override fun configureVisitor(builder: MarkwonVisitor.Builder) {
+                    builder.on(
+                        SoftLineBreak::class.java
+                    ) { visitor, softLineBreak -> visitor.forceNewLine() }
+                }
+            })
+            .build()
+        val editor = MarkwonEditor.create(markwon)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.note_page)
+
         val notetitle = intent.getStringExtra("key") //Title
         setTitle(notetitle)
         val note = db.readNoteData(notetitle)
+        println("Note when read " + note)
         val notetext = findViewById<EditText>(R.id.noteET)
         notetext.setText(note)
+        notetext.addTextChangedListener(MarkwonEditorTextWatcher.withPreRender(
+            editor,
+            Executors.newCachedThreadPool(),
+            notetext))
+
+
 
         cameraFB.setOnClickListener {
             val intent = Intent(cameraFB.context, CameraActivity::class.java)
             cameraFB.context.startActivity(intent)
         }
+
+        boldBtn.setOnClickListener {
+            notetext.append("**")
+        }
+        italicBtn.setOnClickListener {
+            notetext.append("*")
+        }
+        listBtn.setOnClickListener {
+            notetext.append("-")
+        }
+        headingBtn.setOnClickListener {
+            notetext.append("#")
+        }
+
+
         }
 
         override fun onBackPressed(){
@@ -46,6 +88,7 @@ class NoteActivity : AppCompatActivity() {
             }
 
             val noSaveChanges = {dialog:DialogInterface, which: Int->
+                super.onBackPressed()
                 super.onBackPressed()
             }
 
@@ -62,6 +105,7 @@ class NoteActivity : AppCompatActivity() {
                 changesDialog.show()
             }
             else{
+                super.onBackPressed()
                 super.onBackPressed()
             }
 

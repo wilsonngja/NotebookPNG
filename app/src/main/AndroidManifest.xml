@@ -24,9 +24,14 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ViewActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/NotebookTheme">
 
+        </activity>
         <activity android:name=".NoteActivity"
             android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/NotebookTheme">
 
         </activity>

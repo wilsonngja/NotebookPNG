@@ -93,13 +93,7 @@ class CameraActivity : AppCompatActivity() {
                         return
                     }
                 }
-                /*
-                val builder = StringBuilder()
-                for (i in 0..Math.min(textItems!!.size()-1,50)){
-                    builder.append(textItems.valueAt(i).value)
-                    builder.append("\n")
-                }
-                 */
+
                 tvText.post {
                     val stringBuilder = StringBuilder()
                     if (textItems != null) {
@@ -112,11 +106,6 @@ class CameraActivity : AppCompatActivity() {
                     }
                     println("TVTEXT " + tvText.text)
                     tvText.text = stringBuilder.toString()
-                    /*
-                    println("DETECTED TEXT IS : " + builder.toString())
-                    tvText.text = builder.toString()
-                     */
-
                 }
             }
 

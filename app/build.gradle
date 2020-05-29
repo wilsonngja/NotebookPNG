@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -39,5 +41,6 @@ dependencies {
     //noinspection GradleCompatible
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-
+    implementation "io.noties.markwon:core:4.4.0"
+    implementation "io.noties.markwon:editor:4.4.0"
 }

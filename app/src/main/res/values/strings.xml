@@ -4,4 +4,10 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="type_your_notes_here">Type your notes here</string>
+    <string name="b">B</string>
+    <string name="i">I</string>
+    <string name="h">H</string>
+    <string name="_1">1.</string>
+    <string name="_dash">-</string>
+    <string name="_arrow"><![CDATA[>]]></string>
 </resources>
