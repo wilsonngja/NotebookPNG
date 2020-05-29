@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".NoteActivity"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustResize|stateVisible"
             android:theme="@style/NotebookTheme">
 
         </activity>
