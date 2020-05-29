@@ -2,7 +2,6 @@ package com.example.notebook
 
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,16 +46,7 @@ class MainAdapter(private val dataset: MutableList<String>) :
         removedItem = dataset[viewHolder.adapterPosition]
         dataset.removeAt(viewHolder.adapterPosition)
         notifyItemRemoved(viewHolder.adapterPosition)
-
-        Snackbar.make(viewHolder.itemView, "$removedItem deleted.", Snackbar.LENGTH_LONG).setAction("UNDO") {
-            dataset.add(removedPosition, removedItem)
-            notifyItemInserted(removedPosition)
-        }.show()
-    }
-
-    fun deleteDatabase(viewHolder: RecyclerView.ViewHolder) : String{
-        Log.i("TEST","POS BEING REMOVED IS ${viewHolder.adapterPosition}")
-        return dataset[viewHolder.adapterPosition]
+        Snackbar.make(viewHolder.itemView, "$removedItem deleted.", Snackbar.LENGTH_LONG)
     }
 
     override fun getItemCount() = dataset.size

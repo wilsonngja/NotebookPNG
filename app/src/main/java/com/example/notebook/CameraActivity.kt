@@ -1,8 +1,10 @@
 package com.example.notebook
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.SurfaceHolder
 import android.view.SurfaceView
@@ -36,14 +38,24 @@ class CameraActivity : AppCompatActivity() {
             //Start Scanning
             startScanner()
             camID.setOnClickListener {
+                copy2clipboard(tv_text.text.toString())
+                Toast.makeText(this, "Text has been copied to clipboard as ", Toast.LENGTH_LONG).show()
                 cameraSource.stop()
                 textRecognizer.release()
+                finish()
             }
         }else{
             Log.w("NOTE","Your text recognizer is not operational")
         }
 
     }
+
+    fun copy2clipboard(text: CharSequence){
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("copy text", text)
+        clipboard.setPrimaryClip(clip)
+    }
+
 
     private fun startScanner() {
         cameraSource = CameraSource.Builder(this,textRecognizer)
@@ -94,7 +106,7 @@ class CameraActivity : AppCompatActivity() {
                         for (i in 0 until textItems.size()) {
                             val item = textItems?.valueAt(i)
                             stringBuilder.append(item.value)
-                            stringBuilder.append("\n")
+                            stringBuilder.append(" ")
                             println("textItem Size = " + textItems.size())
                         }
                     }

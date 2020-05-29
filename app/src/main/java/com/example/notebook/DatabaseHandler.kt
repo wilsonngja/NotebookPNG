@@ -1,5 +1,6 @@
 package com.example.notebook
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -18,7 +19,7 @@ class DatabaseHandler (var context: Context) : SQLiteOpenHelper(context, DATABAS
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_TITLE + " VARCHAR(256)," +
-                COL_CONTENT + " TEXT)";
+                COL_CONTENT + " TEXT)"
         db?.execSQL(createTable)
 
     }
@@ -30,10 +31,10 @@ class DatabaseHandler (var context: Context) : SQLiteOpenHelper(context, DATABAS
 
     fun insertData(user : User){
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(COL_TITLE,user.title)
         cv.put(COL_CONTENT,user.content)
-        var result = db.insert(TABLE_NAME,null,cv)
+        val result = db.insert(TABLE_NAME,null,cv)
         if (result == -1.toLong())
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
         else
@@ -42,19 +43,19 @@ class DatabaseHandler (var context: Context) : SQLiteOpenHelper(context, DATABAS
 
     fun insertNoteData(user : User, title : String){
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(COL_CONTENT,user.content)
-        var result = db.update(TABLE_NAME,cv, COL_TITLE + " = ?", arrayOf(title))
+        db.update(TABLE_NAME,cv, COL_TITLE + " = ?", arrayOf(title))
     }
 
     fun readData() : MutableList<User>{
-        var list : MutableList<User> = ArrayList()
+        val list : MutableList<User> = ArrayList()
         val db = this.readableDatabase
-        var query = "SELECT * from " + TABLE_NAME
+        val query = "SELECT * from " + TABLE_NAME
         val result = db.rawQuery(query, null)
         if (result.moveToFirst()){
             do {
-                var user = User()
+                val user = User()
                 val read_result = result.getString(result.getColumnIndex(COL_TITLE))
 
                 if (read_result != null) {
@@ -70,6 +71,7 @@ class DatabaseHandler (var context: Context) : SQLiteOpenHelper(context, DATABAS
         return list
     }
 
+    @SuppressLint("Recycle")
     fun readNoteData(title:String) : String{
         val db = this.readableDatabase
         val query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_TITLE + " =? "
