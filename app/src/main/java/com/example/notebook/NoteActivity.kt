@@ -67,10 +67,10 @@ class NoteActivity : AppCompatActivity() {
             notetext.append("*")
         }
         listBtn.setOnClickListener {
-            notetext.append("-")
+            notetext.append("- ")
         }
         headingBtn.setOnClickListener {
-            notetext.append("#")
+            notetext.append("# ")
         }
 
 
