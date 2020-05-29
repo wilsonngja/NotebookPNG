@@ -70,7 +70,7 @@ class NoteActivity : AppCompatActivity() {
             notetext.append("- ")
         }
         headingBtn.setOnClickListener {
-            notetext.append("# ")
+            notetext.append("#")
         }
 
 
