@@ -29,6 +29,7 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.camera_page)
+        setTitle("Camera-To-Text Recognition")
 
         svScanner = findViewById(R.id.sv_scanner)
         tvText = findViewById(R.id.tv_text)

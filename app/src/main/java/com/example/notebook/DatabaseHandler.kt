@@ -36,9 +36,9 @@ class DatabaseHandler (var context: Context) : SQLiteOpenHelper(context, DATABAS
         cv.put(COL_CONTENT,user.content)
         val result = db.insert(TABLE_NAME,null,cv)
         if (result == -1.toLong())
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Creation failed", Toast.LENGTH_SHORT).show()
         else
-            Toast.makeText(context, "Success",Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Successfully created",Toast.LENGTH_LONG).show()
     }
 
     fun insertNoteData(user : User, title : String){

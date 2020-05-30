@@ -37,7 +37,7 @@
         </activity>
 
         <activity android:name=".CameraActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/NotebookTheme"
             tools:ignore="WrongManifestParent">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

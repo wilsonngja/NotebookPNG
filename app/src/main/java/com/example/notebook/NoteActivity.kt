@@ -3,9 +3,7 @@ package com.example.notebook
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -124,7 +122,7 @@ class NoteActivity : AppCompatActivity() {
 
         val id = item.itemId
         if (id == R.id.save_icon){
-            Toast.makeText(this,"Saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Note Saved", Toast.LENGTH_LONG).show()
 
             val notecontent = noteET.text.toString()
             val user = User("",notecontent)

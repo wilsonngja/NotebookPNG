@@ -79,9 +79,7 @@ class MainActivity : AppCompatActivity() {
                         db.insertData(user)
                         dataset.add(notetitle as String)
                         viewAdapter.notifyDataSetChanged()
-                        Log.i("TEST","dataset value is $dataset")
                     }
-
                 }
             }
 
