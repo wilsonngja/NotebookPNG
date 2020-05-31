@@ -3,7 +3,9 @@ package com.example.notebook
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -59,16 +61,21 @@ class NoteActivity : AppCompatActivity() {
         }
 
         boldBtn.setOnClickListener {
-            notetext.append("**")
+            val start: Int = notetext.getSelectionStart()
+            notetext.text.insert(start,"**")
         }
         italicBtn.setOnClickListener {
-            notetext.append("*")
+            val start: Int = notetext.getSelectionStart()
+            notetext.text.insert(start,"*")
         }
         listBtn.setOnClickListener {
-            notetext.append("- ")
+            val start: Int = notetext.getSelectionStart()
+            notetext.text.insert(start,"- ")
+
         }
         headingBtn.setOnClickListener {
-            notetext.append("#")
+            val start: Int = notetext.getSelectionStart()
+            notetext.text.insert(start,"#")
         }
 
 
